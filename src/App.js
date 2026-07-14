@@ -1,5 +1,9 @@
 import { useState } from "react";
 import './App.css';
+import Son1 from './components/Son1'
+import Son2 from './components/Son2'
+import { createContext } from "react";
+
 
 const msg="Hello React!";
 
@@ -39,6 +43,8 @@ const style={
   fontSize:'15px'
 }
 
+ export const Ctx=createContext()
+
 
 function App() {
   const [form,setCount]=useState({
@@ -48,6 +54,11 @@ function App() {
     // 做了两件事：用传入的新值修改count的值，并且触发组件重新渲染
   setCount({...form, name:'hh2'})
 } 
+const [n,setN]=useState('')
+const fn_f=(x)=>{
+  console.log(x,'888')
+  setN(x)
+}
   return (
     // <div className="App">
     //   {'hh'}
@@ -76,7 +87,12 @@ function App() {
     //   <button onClick={()=>{handleClick2()}}>11</button>
     // </div>
     <div>
-       <div class="oo">11</div>
+       {/* <div class="oo">11</div> */}
+       <Son1 fn_f={fn_f}></Son1>
+       <Ctx.Provider value={msg}>
+         <Son2></Son2>
+       </Ctx.Provider>
+       {/* <Son2 n={n}></Son2> */}
     </div>
   );
 }
