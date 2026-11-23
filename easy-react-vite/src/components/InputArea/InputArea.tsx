@@ -1,24 +1,37 @@
 import './InputArea.css'
 import { useRef, useState } from 'react'
+import { sendChatMessage } from '../../api/chat'
 
 function InputArea() {
   const [inputValue,setInputValue] = useState('')
   const [inputList, setInputList] = useState<{id: number; question: string; answer: string}[]>([]) 
   const nextId = useRef(1)
 
-   function sendMsg(){
-    if(inputValue.trim() === ''){
+   async function sendMsg(){
+    const question = inputValue.trim()
+    if(question === ''){
       console.log('请输入内容')
       return
-    }else{
-      setInputList([...inputList, {
-        id: nextId.current++,
-        question: inputValue,
-        answer: '生成中，请稍后。。'
-      }])
-      setInputValue('')
-      console.log(inputList)
+    }
 
+    const id = nextId.current++
+    setInputList(prev => [...prev, {
+      id,
+      question,
+      answer: '生成中，请稍后。。'
+    }])
+    setInputValue('')
+
+    try {
+      const answer = await sendChatMessage([{ role: 'user', content: question }])
+      setInputList(prev => prev.map(item =>
+        item.id === id ? { ...item, answer } : item
+      ))
+    } catch (err) {
+      console.error(err)
+      setInputList(prev => prev.map(item =>
+        item.id === id ? { ...item, answer: '请求失败，请稍后重试。' } : item
+      ))
     }
   }
   return (

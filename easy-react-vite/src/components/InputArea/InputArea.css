@@ -58,3 +58,7 @@
   align-self: flex-end;   /* 在整行里靠右 */
   width: fit-content;     /* 宽度只包文字 */
 }
+.chatAnswer{
+  margin-top: 20px;
+  line-height: 2;
+}
