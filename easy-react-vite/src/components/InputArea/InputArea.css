@@ -1,0 +1,60 @@
+.inputArea{
+  flex: 1;
+  position: relative;
+}
+.inputBox{
+  width: 60vw;
+  height: 150px;
+  overflow-y: auto;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  position: fixed;
+  bottom: 10px;
+  left: calc(50% - 15vw);
+  padding: 10px;
+ }
+ .input{
+  border: none;
+  outline: none;            /* 去掉聚焦高亮框 */
+  resize: none;             /* 禁止拖拽缩放 */
+  width: calc(100% - 100px); /* 给按钮留出空间 */
+  height: calc(100% - 20px);
+  padding: 4px 8px;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.5;
+  vertical-align: top;
+  text-align: left;         /* 文字靠左 */
+ }
+ .sendBtn{
+  border: none;
+  width: 80px;
+  height: 40px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  border-radius: 20px;
+  background: #007bff ;/* 紫色渐变 */
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+ }
+
+.chatItemList{
+  padding: 30px 60px;
+}
+.chatContentItem{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.chatQuestion{
+  background-color: #e6f7ff;
+  padding: 8px 14px;
+  border-radius: 12px;
+  align-self: flex-end;   /* 在整行里靠右 */
+  width: fit-content;     /* 宽度只包文字 */
+}
