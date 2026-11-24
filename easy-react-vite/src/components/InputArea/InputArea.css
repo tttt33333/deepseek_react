@@ -1,16 +1,18 @@
 .inputArea{
   flex: 1;
-  position: relative;
+  height: 100vh;          /* 固定高度，让内部列表自己滚动 */
+  display: flex;
+  flex-direction: column;
 }
 .inputBox{
+  flex-shrink: 0;         /* 输入框高度不被压缩 */
   width: 60vw;
   height: 150px;
   overflow-y: auto;
   border-radius: 20px;
   border: 1px solid #ccc;
-  position: fixed;
-  bottom: 10px;
-  left: calc(50% - 15vw);
+  position: relative;     /* 作为发送按钮的定位基准 */
+  margin: 10px auto;      /* 水平居中、与列表留出间距 */
   padding: 10px;
  }
  .input{
@@ -44,7 +46,9 @@
  }
 
 .chatItemList{
-  padding: 30px 60px;
+  flex: 1;                /* 占满剩余高度 */
+  overflow-y: auto;       /* 消息区独立滚动，不会滑到输入框下面 */
+  padding: 30px 60px 20px;
 }
 .chatContentItem{
   padding: 10px;
@@ -61,4 +65,5 @@
 .chatAnswer{
   margin-top: 20px;
   line-height: 2;
+  white-space: pre-wrap;   /* 保留流式返回里的换行 */
 }
